@@ -1,3 +1,9 @@
+
+var mongoose   = require('mongoose');
+    mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o');
+
+var Bear= require('./app/things')
+
 var express = require('express')
 var bodyParser= require('body-parser')
 var app = express()
@@ -11,6 +17,27 @@ var port = process.env.PORT || 8080
 var router= express.Router()
 
 
+router.use(function(req,res,next){
+
+    console.log('Something is happening');
+    next();
+
+})
+
+
+router.get('/',function(req,res){
+
+    res.json({messagee:'Yo boys'})
+
+
+
+})
+
+
+
+
+
+app.use('/',router)
 
 
 
@@ -26,3 +53,4 @@ var router= express.Router()
 
 
 app.listen(port)
+console.log("Magic happens here")
